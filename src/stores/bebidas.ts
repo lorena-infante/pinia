@@ -18,8 +18,13 @@ export const useBebidasStore = defineStore('bebidas', () => {
     categorias.value = drinks
   })
 
+  function obtenerRecetas() {
+    console.log('Consultando API')
+  }
+
   return {
     categorias,
     busqueda,
+    obtenerRecetas,
   }
 })
