@@ -40,9 +40,11 @@ console.log(bebidasStore.categorias)
                     <label class="block text-white uppercase font-extrabold text-lg" for="ingrediente">
                         Nombre o Ingredientes </label>
                     <input id="ingrediente" type="text" class="p-3 w-full rounded-lg focus:outline-none bg-white"
-                        placeholder="Nombre o ingrediente: Ej. Vodka, Tequila, etc" />
+                        placeholder="Nombre o ingrediente: Ej. Vodka, Tequila, etc"
+                        v-model="bebidasStore.busqueda.nombre" />
 
-                    <select id="categoria" type="text" class="p-3 w-full rounded-lg focus:outline-none bg-white">
+                    <select id="categoria" type="text" class="p-3 w-full rounded-lg focus:outline-none bg-white"
+                        v-model="bebidasStore.busqueda.categoria">
                         <option value="">-- Selecciona --</option>
                         <option v-for="categoria in bebidasStore.categorias" :key="categoria.strCategory"
                             :value="categoria.strCategory">
