@@ -1,10 +1,17 @@
 <script setup lang="ts">
+import { useBebidasStore } from '@/stores/bebidas'
 interface Receta {
     idDrink: string,
     strDrink: string,
     strDrinkThumb: string
 }
 defineProps<{ receta: Receta }>()
+
+const bebidasStore = useBebidasStore();
+
+function verReceta(id: string) {
+    bebidasStore.obtenerDetalleReceta(id);
+}
 
 </script>
 <template>
@@ -17,7 +24,8 @@ defineProps<{ receta: Receta }>()
                 {{
                     receta.strDrink }}</h2>
         </div>
-        <button type="button" class="bg-orange-400 mt-5 w-full p-3 font-bold text-white text-lg">
+        <button type="button" class="bg-orange-400 mt-5 w-full p-3 font-bold text-white text-lg"
+            @click="verReceta(receta.idDrink)">
             Ver Receta
         </button>
 
