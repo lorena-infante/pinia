@@ -1,8 +1,10 @@
 import { ref, reactive, onMounted } from 'vue'
 import { defineStore } from 'pinia'
 import APIService from '@/services/APIService'
+import { useDetalleRecetaStore } from './detalleReceta'
 
 export const useBebidasStore = defineStore('bebidas', () => {
+  const detalleRecetaStore = useDetalleRecetaStore();
   const categorias = ref([])
   const busqueda = reactive({
     nombre: '',
@@ -32,6 +34,7 @@ export const useBebidasStore = defineStore('bebidas', () => {
   async function obtenerDetalleReceta(id: string) {
     const { data: { drinks } } = await APIService.obtenerDetalleReceta(id);
     console.log(drinks[0]);
+    detalleRecetaStore.handleclickModal();
   }
 
   return {

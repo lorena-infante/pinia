@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { useBebidasStore } from '@/stores/bebidas'
-import { useDetalleRecetaStore } from '@/stores/detalleReceta';
 interface Receta {
     idDrink: string,
     strDrink: string,
@@ -9,12 +8,10 @@ interface Receta {
 defineProps<{ receta: Receta }>()
 
 const bebidasStore = useBebidasStore();
-const detalleRecetaStore = useDetalleRecetaStore();
 
 
 function verReceta(id: string) {
     bebidasStore.obtenerDetalleReceta(id);
-    detalleRecetaStore.showModal = true;
 }
 
 </script>
@@ -32,7 +29,5 @@ function verReceta(id: string) {
             @click="verReceta(receta.idDrink)">
             Ver Receta
         </button>
-
-        <DetalleReceta v-if="detalleRecetaStore.showModal" :showModal="detalleRecetaStore.showModal" />
     </div>
 </template>
