@@ -3,6 +3,7 @@ import { defineStore } from 'pinia'
 import APIService from '@/services/APIService'
 import { useDetalleRecetaStore } from './detalleReceta'
 
+
 export const useBebidasStore = defineStore('bebidas', () => {
   const detalleRecetaStore = useDetalleRecetaStore();
   const categorias = ref([])
@@ -11,7 +12,7 @@ export const useBebidasStore = defineStore('bebidas', () => {
     categoria: '',
   })
   const recetas = ref([])
-  const idBebida = ref('');
+  const detalleReceta = ref({})
 
   onMounted(async () => {
     const {
@@ -33,15 +34,17 @@ export const useBebidasStore = defineStore('bebidas', () => {
 
   async function obtenerDetalleReceta(id: string) {
     const { data: { drinks } } = await APIService.obtenerDetalleReceta(id);
-    console.log(drinks[0]);
+    detalleReceta.value = drinks[0];
+    console.log(detalleReceta.value);
     detalleRecetaStore.handleclickModal();
   }
 
   return {
     categorias,
     busqueda,
-    obtenerRecetas,
     recetas,
+    detalleReceta,
+    obtenerRecetas,
     obtenerDetalleReceta,
 
   }

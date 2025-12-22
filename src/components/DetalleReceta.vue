@@ -1,8 +1,12 @@
 <script setup lang="ts">
 import { Dialog, DialogPanel, DialogTitle, TransitionChild, TransitionRoot } from '@headlessui/vue'
 import { useDetalleRecetaStore } from '@/stores/detalleReceta';
+import { useBebidasStore } from '@/stores/bebidas';
 
 const detalleRecetaStore = useDetalleRecetaStore();
+const bebidasStore = useBebidasStore();
+
+
 </script>
 <template>
     <template>
@@ -24,8 +28,12 @@ const detalleRecetaStore = useDetalleRecetaStore();
                                 <div>
                                     <div class="mt-3">
 
-
-
+                                        <DialogTitle as="h3" class="text-gray-900 text-4xl font-extrabold my-5">
+                                           <!-- TODO: type! -->
+                                            {{ bebidasStore.detalleReceta.strDrink}} 
+                                        </DialogTitle>
+                                    
+                                        <img :src="bebidasStore.detalleReceta.strDrinkThumb" :alt="'Imagen de '+ bebidasStore.detalleReceta.strDrink">
                                     </div>
                                 </div>
                                 <div class="mt-5 sm:mt-6 flex justify-between gap-4">
